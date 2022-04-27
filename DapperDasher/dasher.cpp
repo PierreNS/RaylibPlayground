@@ -2,20 +2,18 @@
 
 int main()
 {
-#pragma region Window Fields
+    //Window Fields...
     const int windowWidth = 512;
     const int windowHeight = 380;
     const char* windowName = "Dapper Dash";
     
     InitWindow(windowWidth,windowHeight,windowName);
     SetTargetFPS(60);
-#pragma endregion
-/*================================================================================================================*/
-#pragma region Player Fields
+
+    //Player Fields...
     Texture2D playerSprite = LoadTexture("./textures/scarfy.png");
-    Vector2 playerSpriteSize {128,128};
-    Vector2 playerPos {((float)windowWidth/2) - (playerSpriteSize.x/2),((float)windowHeight - playerSpriteSize.y)};
     Rectangle playerRect{0,0,(float)playerSprite.width/6,(float)playerSprite.height};
+    Vector2 playerPos {((float)windowWidth/2) - (playerSprite.width/6),((float)windowHeight - playerSprite.height)};
     
     int animationFrame = 0;
     const float animationUpdate = 1.0/12.0;
@@ -24,14 +22,14 @@ int main()
     int velocity = 0;
     const int gravity = 1000;
     const int jumpForce = -600;
-
     bool grounded;
-#pragma endregion
-/*================================================================================================================*/
-#pragma region Hazard Fields
-    
-#pragma endregion
-/*================================================================================================================*/
+
+    //Hazards Fields...
+    Texture2D hazardSprite = LoadTexture("./textures/12_nebula_spritesheet.png");
+    Rectangle hazardRect {0,0,(float)hazardSprite.width/8,(float)hazardSprite.height/8};
+    Vector2 hazardPos{windowWidth,windowHeight-hazardRect.height};
+    int hazardVelocity = -600;
+
     //Update loop...
     while (WindowShouldClose() == false)
     {        
@@ -39,7 +37,7 @@ int main()
 
         BeginDrawing();
         ClearBackground(WHITE);
-
+        /*----------Game Logic----------*/
         if (playerPos.y >= windowHeight - playerRect.height)
         {
             velocity = 0;
@@ -57,27 +55,35 @@ int main()
             velocity = jumpForce;
         }
         
+        hazardPos.x += hazardVelocity * deltaTime;
         playerPos.y += velocity * deltaTime;
 
-        DrawTextureRec(playerSprite,playerRect,playerPos,WHITE);
-
-        animationTime += deltaTime;
-
-        if (animationTime >= animationUpdate)
+        if(grounded == true)
         {
-            animationTime = 0;
-
-            playerRect.x = animationFrame * playerRect.width;
-            animationFrame++;
-
-            if (animationFrame > 5)
+            animationTime += deltaTime;
+            if (animationTime >= animationUpdate)
             {
-                animationFrame = 0;
+                animationTime = 0;
+
+                playerRect.x = animationFrame * playerRect.width;
+                animationFrame++;
+
+                if (animationFrame > 5)
+                {
+                    animationFrame = 0;
+                }
             }
         }
+        
+        /*----------Draw Logic----------*/
+        DrawTextureRec(hazardSprite,hazardRect,hazardPos,WHITE);
+        DrawTextureRec(playerSprite,playerRect,playerPos,WHITE);
 
         EndDrawing();
     }
 
+    //Unload resources...
+    UnloadTexture(playerSprite);
+    UnloadTexture(hazardSprite);
     CloseWindow();
 }
