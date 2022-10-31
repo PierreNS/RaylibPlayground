@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="7" height="7" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
+ <editorsettings>
+  <export target="../../../H3Roguelike/GameV1/Resources/CSV/OrcCamp02.csv" format="csv"/>
+ </editorsettings>
+ <tileset firstgid="1" source="Tilemap_Modified_MSN.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="7" height="7">
+  <data encoding="csv">
+289,49,30,30,118,30,289,
+49,193,30,66,146,204,30,
+30,30,30,30,30,289,30,
+146,204,289,30,30,49,30,
+30,30,30,30,30,109,193,
+193,137,30,30,288,30,117,
+118,145,288,30,118,204,30
+</data>
+ </layer>
+</map>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="9" height="9" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
+ <editorsettings>
+  <export format="csv"/>
+ </editorsettings>
+ <tileset firstgid="1" source="Tilemap_Modified_MSN.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="9" height="9">
+  <data encoding="csv">
+222,30,288,30,30,222,45,30,289,
+30,204,30,30,30,30,221,204,30,
+30,30,30,30,137,193,193,30,109,
+289,30,30,30,30,30,30,30,30,
+66,288,30,30,30,30,66,193,30,
+222,204,30,30,30,30,30,30,222,
+221,30,30,30,30,30,222,30,30,
+30,30,221,30,30,289,204,30,288,
+30,193,81,289,288,30,30,289,30
+</data>
+ </layer>
+</map>
